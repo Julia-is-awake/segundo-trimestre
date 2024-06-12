@@ -4,6 +4,14 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Teste {
+    public static void mostraAluno(Aluno a1){
+        System.out.println("Nome: " + a1.nome + " " + a1.sobrenome);
+        System.out.println("Código: " + a1.codigo);
+        System.out.println("Média: " + a1.obterMedia());
+        System.out.println("O aluno " + a1.obterStatus());
+        System.out.println("-------------------------------------------");
+    }
+
     public static Aluno cadastrarAluno() {
         Scanner ler = new Scanner(System.in);
         Aluno a1 = new Aluno();
@@ -22,6 +30,8 @@ public class Teste {
         return a1;
     }
 
+
+
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
         Aluno[] turma = new Aluno[10];
@@ -37,7 +47,8 @@ public class Teste {
             if (resp == 'c') {
                 if (countAluno < turma.length) {
                     turma[countAluno] = cadastrarAluno();
-                    System.out.println("Aluno " + turma[countAluno].nome + " " + turma[countAluno].sobrenome + " cadastrado obteve o código " + turma[countAluno].codigo);
+                    System.out.println("Aluno " + turma[countAluno].nome + " " + turma[countAluno].sobrenome +
+                            " cadastrado obteve o código " + turma[countAluno].codigo);
                     System.out.print("Qual a primeira nota do " + turma[countAluno].nome + ": ");
                     turma[countAluno].notaUm = ler.nextFloat();
                     System.out.print("Qual a segunda nota do " + turma[countAluno].nome + ": ");
@@ -48,34 +59,23 @@ public class Teste {
 
             } else if (resp == 'l') {
                 for (int i = 0; i < countAluno; i++) {
-                    System.out.println("Nome: " + turma[i].nome + " " + turma[i].sobrenome);
-                    System.out.println("Código: " + turma[i].codigo);
-                    System.out.println("Média: " + turma[i].obterMedia());
-                    System.out.println("O aluno " + turma[i].obterStatus());
-                    System.out.println("-------------------------------------------");
-
+                    mostraAluno(turma[i]);
                 }
             } else if (resp == 'p') {
                 System.out.println("Digite o código da matrícula: ");
                 int codigo = ler.nextInt();
                 int i;
                 boolean achou = false;
-                int alunoPosicao = 0;
                 for (i = 0; i < countAluno; i++) {
                     if (turma[i].codigo == codigo) {
-                        alunoPosicao = i;
+                        mostraAluno(turma[i]);
                         achou = true;
                         i = countAluno;
                     } else {
                         i++;
                     }
                 }
-                if (achou) {
-                    System.out.println("Nome: " + turma[alunoPosicao].nome + " " + turma[alunoPosicao].sobrenome);
-                    System.out.println("Código: " + turma[alunoPosicao].codigo);
-                    System.out.println("Média: " + turma[alunoPosicao].obterMedia());
-                    System.out.println("O aluno " + turma[alunoPosicao].obterStatus());
-                } else {
+                if (!achou) {
                     System.out.println("Aluno não foi encontrado!");
                 }
             }
