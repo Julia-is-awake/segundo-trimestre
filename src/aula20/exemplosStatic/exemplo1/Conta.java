@@ -1,24 +1,40 @@
-package aula19.exemplos.exemplo1;
+package aula20.exemplosStatic.exemplo1;
 
 import java.util.Random;
 
 public class Conta {
     String titular;
-    String identificador;
+    private String identificador;
     String senha;
-    float saldo;
+    private float saldo;
+    static String nomeBanco;
 
-    /* public Conta(String titular, float saldo){
+    public Conta(String titular, float saldo){
         geraidentificador();
         this.titular = titular;
         this.saldo = saldo;
-    } */
+    }
+    public Conta(){
+
+    }
+
+    public Conta(String titular, String senha, float saldo){
+        geraidentificador();
+        this.titular = titular;
+        this.senha = senha;
+        this.saldo = saldo;
+    }
+
     public Conta(String titular){
         geraidentificador();
         this.titular = titular;
     }
 
-    void geraidentificador(){
+    public String getIdentificador(){
+        return identificador;
+    }
+
+    private void geraidentificador(){
         String texto = "";
         for(int i=0; i<4; i++){
             texto+=(char) new Random().nextInt(65,91);
