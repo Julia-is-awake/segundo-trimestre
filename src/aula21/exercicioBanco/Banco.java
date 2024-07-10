@@ -17,6 +17,7 @@ public class Banco {
         System.out.println("A nova conta tem o identificador " + c1.getIdentificador());
         System.out.print("Informe o saldo atual da sua conta: ");
         c1.saldo = ler.nextFloat();
+
         return c1;
     }
 
